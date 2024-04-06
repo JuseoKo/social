@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  web:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+#    command: python manage.py runserver 0.0.0.0:8000
+  postgres:
+    container_name: api-db
+    image: postgres:15.0
+    environment:
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_DB=${PG_NAME}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+    volumes:
+      - /Users/maria/Desktop/docker/api:/home/node/app
+    ports:
+      - "5432:5432"

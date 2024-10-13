@@ -1,19 +1,21 @@
-version: '3.8'
 services:
   web:
     build:
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile  # Dockerfile을 이용해 FastAPI 애플리케이션 빌드
     ports:
-      - "8000:8000"
-#    command: python manage.py runserver 0.0.0.0:8000
-  postgres:
-    container_name: api-db
+      - "8080:8000"  # 외부에서 8000 포트로 접근 가능
+    depends_on:
+      - db  # db 서비스가 먼저 시작되어야 함
+#    command: uvicorn main:app --host 0
+  db:
+    container_name: db
     image: postgres:15.0
     environment:
-      - POSTGRES_USER=${PG_USER}
-      - POSTGRES_DB=${PG_NAME}
-      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_USER=${API_USER}
+      - POSTGRES_DB=${API_NAME}
+      - POSTGRES_PASSWORD=${API_PASSWORD}
     volumes:
-      - /Users/maria/Desktop/docker/api:/home/node/app
+      - /root/app/db/social:/var/lib/postgresql/data
     ports:
       - "5432:5432"

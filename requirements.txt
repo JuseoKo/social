@@ -1,0 +1,18 @@
+#python==3.12
+pytest==8.1.1
+# Postgresql
+psycopg2-binary==2.9.9
+# FastApi
+fastapi==0.115.0
+uvicorn==0.31.1
+# 데이터
+pandas==2.2.3
+SQLAlchemy==2.0.35
+alembic==1.13.3
+# 기타
+loguru==0.7.2
+poetry==1.8.2
+python-dotenv==1.0.1
+pre-commit==3.6.2
+isort==5.13.2
+black==24.3.0
